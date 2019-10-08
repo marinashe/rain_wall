@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import T from 'prop-types';
 import './styles.css';
 import ConnectedGrass from '../grass';
-
+import ConnectedWall from '../wall';
 
 class Main extends PureComponent {
   static propTypes = {
@@ -12,11 +12,11 @@ class Main extends PureComponent {
       y: T.number
     }),
     unsetDragMode: T.func.isRequired,
-    setCoordinates: T.func.isRequired,
     addGrassBlocks: T.func.isRequired,
     block: T.number.isRequired,
     grass: T.number.isRequired,
-    direction: T.number.isRequired
+    direction: T.number,
+    columnIndex: T.number
   }
 
   state = {
@@ -24,11 +24,11 @@ class Main extends PureComponent {
       width: 700,
       height: 500
     },
-    additionalGrassBlocks: 0,
+    additionalGrassBlocks: 0
   }
 
 
-  addNewGrassBlocks = (count) => {
+  setNewGrassBlocks = (count) => {
     const { grass, block } = this.props;
     const { size: { width } } = this.state;
     if (grass + count >= 3 && (grass + count) * block <= width) {
@@ -50,7 +50,7 @@ class Main extends PureComponent {
       } = this.props;
       const current = { x: e.pageX, y: e.pageY };
       const additionalBlocks = Math.round(2 * direction * (current.x - startX) / block);
-      this.addNewGrassBlocks(additionalBlocks);
+      this.setNewGrassBlocks(additionalBlocks);
     }
   }
 
@@ -61,7 +61,7 @@ class Main extends PureComponent {
       const { addGrassBlocks } = this.props;
       const { additionalGrassBlocks }  = this.state;
       unsetDragMode();
-      this.addNewGrassBlocks(0);
+      this.setNewGrassBlocks(0);
       addGrassBlocks(additionalGrassBlocks);
 
     }
@@ -71,7 +71,7 @@ class Main extends PureComponent {
     const { dragMode, unsetDragMode } = this.props;
     if (dragMode) {
       unsetDragMode();
-      this.addNewGrassBlocks(0);
+      this.setNewGrassBlocks(0);
     }
   }
 
@@ -87,6 +87,9 @@ class Main extends PureComponent {
       >
         <ConnectedGrass
           additionalBlocks={ additionalGrassBlocks }
+        />
+        <ConnectedWall
+          additionalWallLength={ additionalGrassBlocks }
         />
       </div>
     );

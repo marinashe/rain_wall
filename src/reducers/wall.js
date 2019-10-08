@@ -4,12 +4,13 @@ import Constants from '../config/constants';
 const getDefaultState = () => ({
   wall: [1, 0, 2],
   water: [],
-  next_level: [],
+  nextLevel: [],
   grass: 3,
   block: 20,
   dragMode: false,
   direction: 1, // 1 - to rigth, -1 - to left
-  startCoordinates: null
+  startCoordinates: null,
+  columnIndex: 0
 });
 
 const wall = createReducer(getDefaultState(), {
@@ -27,16 +28,27 @@ const wall = createReducer(getDefaultState(), {
   },
   [Constants.Grass.ADD_GRASS_BLOCK](state, { count }) {
     const grass = state.grass + count;
+    let wall = state.wall;
+    if (count > 0) {
+      wall = state.wall.concat(Array(count).fill(0));
+    }
+
+    if (count < 0) {
+      const newLength = wall.length - Math.abs(count);
+      wall = wall.slice(0, newLength);
+    }
     return {
       ...state,
-      grass
+      grass,
+      wall
     };
   },
-  [Constants.Drag.SET_DRAG_MODE](state, { coordinates, direction }) {
+  [Constants.Drag.SET_DRAG_MODE](state, { coordinates, direction, columnIndex }) {
     return {
       ...state,
       dragMode: true,
       direction,
+      columnIndex,
       startCoordinates: coordinates
     };
   },
@@ -46,13 +58,7 @@ const wall = createReducer(getDefaultState(), {
       dragMode: false,
       startCoordinates: null
     };
-  },
-  [Constants.Drag.SET_COORDINATES](state, { coordinates }) {
-    return {
-      ...state,
-      startCoordinates: coordinates
-    };
-  },
+  }
 });
 
 export default wall;

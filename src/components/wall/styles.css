@@ -1,0 +1,15 @@
+.wall-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.wall-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.wall-block {
+  background-color: brown;
+  border-top: 1px solid black;
+}

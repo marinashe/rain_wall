@@ -1,6 +1,7 @@
 .grass-container {
   display: flex;
   flex-direction: row;
+  margin-bottom: 30px;
 }
 
 .grass-block {

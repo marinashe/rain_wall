@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Main from './main';
-import { unsetDragMode, setCoordinates } from '../../actions/drag';
+import { unsetDragMode } from '../../actions/drag';
 import { addGrassBlocks } from '../../actions/grass';
 
 const mapStateToProps = (state) => ({
@@ -8,8 +8,9 @@ const mapStateToProps = (state) => ({
   startCoordinates: state.wall.startCoordinates,
   block: state.wall.block,
   grass: state.wall.grass,
-  direction: state.wall.direction
+  direction: state.wall.direction,
+  columnIndex: state.wall.columnIndex
 });
 
 
-export default connect(mapStateToProps, { unsetDragMode, setCoordinates, addGrassBlocks })(Main);
+export default connect(mapStateToProps, { unsetDragMode, addGrassBlocks })(Main);
