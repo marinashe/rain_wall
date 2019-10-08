@@ -1,0 +1,8 @@
+.grass-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.grass-block {
+  background-color: green;
+}
