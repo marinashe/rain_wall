@@ -1,0 +1,7 @@
+import Constants from '../config/constants';
+
+export const addWallBlocks = (count, columnIndex) => ({
+  type: Constants.Wall.ADD_WALL_BLOCKS,
+  count,
+  columnIndex
+});

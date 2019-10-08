@@ -9,17 +9,30 @@ class Wall extends PureComponent {
     block: T.number.isRequired,
     nextLevel: T.arrayOf(T.number).isRequired,
     water: T.arrayOf(T.number).isRequired,
-    additionalWallLength: T.number.isRequired
+    additionalWallLength: T.number.isRequired,
+    additionalWallBlocks: T.number.isRequired,
+    columnIndex: T.number.isRequired,
+    setDragMode: T.func.isRequired
+  }
+
+  onMouseDown = (e, columnIndex) => {
+    const { setDragMode } = this.props;
+    const coordinates = { x: e.pageX, y: e.pageY };
+    setDragMode(coordinates, 1, columnIndex);
   }
 
   renderWallColumn = (blockCount, columnIndex) => {
-    const { block } = this.props;
+    const { block, columnIndex: raisedColumnindex, additionalWallBlocks } = this.props;
     const blockStyle = {
       width: block,
       height: block
     }
 
-    if (blockCount === 0) {
+    const newBlockCount = columnIndex === raisedColumnindex
+      ? blockCount + additionalWallBlocks
+      : blockCount;
+
+    if (newBlockCount === 0) {
       blockStyle.height = 0;
       blockStyle.borderTop = 0;
       return (
@@ -27,19 +40,20 @@ class Wall extends PureComponent {
           key={ `wallBlock${ columnIndex }-#` }
           columnIndex={ columnIndex }
           blockStyle={ blockStyle }
+          onMouseDown={ this.onMouseDown }
         />
       );
     }
-
     return (
       <div className="wall-column" key={ `column${ columnIndex }` }>
         {
-          Array.from(Array(blockCount)).map((nothing, blockIndex) => {
+          Array.from(Array(newBlockCount)).map((nothing, blockIndex) => {
             return (
               <WallBlock
                 key={ `wallBlock${ columnIndex }-${ blockIndex }` }
                 columnIndex={ columnIndex }
                 blockStyle={ blockStyle }
+                onMouseDown={ this.onMouseDown }
               />
             )
           })
@@ -50,8 +64,8 @@ class Wall extends PureComponent {
 
   render() {
     const { wall, additionalWallLength } = this.props;
-
-    let newWall = wall;
+    if (isNaN(wall[wall.length-1])) { debugger; }
+    let newWall = [...wall];
     if (additionalWallLength > 0) {
       newWall = wall.concat(Array(additionalWallLength).fill(0));
     }

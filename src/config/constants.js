@@ -1,6 +1,7 @@
 const Constants = {
   Wall: {
-    CREATE_WALL: 'create:new:wall'
+    CREATE_WALL: 'create:new:wall',
+    ADD_WALL_BLOCKS: 'add:wall:blocks'
   },
   Grass: {
     ADD_GRASS_BLOCK: 'add:grass:block'

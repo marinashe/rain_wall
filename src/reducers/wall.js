@@ -6,11 +6,11 @@ const getDefaultState = () => ({
   water: [],
   nextLevel: [],
   grass: 3,
-  block: 20,
+  block: 30,
   dragMode: false,
   direction: 1, // 1 - to rigth, -1 - to left
   startCoordinates: null,
-  columnIndex: 0
+  columnIndex: -1
 });
 
 const wall = createReducer(getDefaultState(), {
@@ -28,20 +28,21 @@ const wall = createReducer(getDefaultState(), {
   },
   [Constants.Grass.ADD_GRASS_BLOCK](state, { count }) {
     const grass = state.grass + count;
-    let wall = state.wall;
+    let wall = [...state.wall];
     if (count > 0) {
       wall = state.wall.concat(Array(count).fill(0));
     }
 
     if (count < 0) {
-      const newLength = wall.length - Math.abs(count);
-      wall = wall.slice(0, newLength);
+      const newLength = state.wall.length + count;
+      wall = state.wall.slice(0, newLength);
     }
-    return {
+    const newState = {
       ...state,
       grass,
       wall
     };
+    return newState;
   },
   [Constants.Drag.SET_DRAG_MODE](state, { coordinates, direction, columnIndex }) {
     return {
@@ -56,7 +57,16 @@ const wall = createReducer(getDefaultState(), {
     return {
       ...state,
       dragMode: false,
-      startCoordinates: null
+      startCoordinates: null,
+      columnIndex: -1
+    };
+  },
+  [Constants.Wall.ADD_WALL_BLOCKS](state, { count, columnIndex }) {
+    const wall = [...state.wall];
+    wall[columnIndex] = state.wall[columnIndex] + count;
+    return {
+      ...state,
+      wall
     };
   }
 });
