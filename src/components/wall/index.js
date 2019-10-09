@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import Wall from './wall';
 import { setDragMode } from '../../actions/drag';
 
-const mapStateToProps = (state) => ({
-  wall: state.wall.wall,
-  block: state.wall.block,
-  water: state.wall.water,
-  nextLevel: state.wall.nextLevel,
-  columnIndex: state.wall.columnIndex
+const mapStateToProps = ({ wall, drag }) => ({
+  wall: wall.wall,
+  blockSize: wall.blockSize,
+  water: wall.water,
+  nextLevel: wall.nextLevel,
+  columnIndex: drag.columnIndex
 });
 
 export default connect(mapStateToProps, { setDragMode })(Wall);

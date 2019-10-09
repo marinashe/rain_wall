@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import Garss from './grass';
+import Grass from './grass';
 import { setDragMode } from '../../actions/drag';
 
-const mapStateToProps = (state) => ({
-  grass: state.wall.grass,
-  block: state.wall.block
+const mapStateToProps = ({ wall }) => ({
+  grass: wall.grass,
+  blockSize: wall.blockSize
 });
 
-
-export default connect(mapStateToProps, { setDragMode })(Garss);
+export default connect(mapStateToProps, { setDragMode })(Grass);

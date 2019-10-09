@@ -1,7 +1,0 @@
-.main-container {
-  border: 2px solid black;
-  margin: 20px 20px 50px;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-}

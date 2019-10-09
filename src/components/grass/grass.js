@@ -6,7 +6,7 @@ import './styles.css';
 class Grass extends PureComponent {
   static propTypes = {
     grass: T.number.isRequired,
-    block: T.number.isRequired,
+    blockSize: T.number.isRequired,
     setDragMode: T.func.isRequired,
     additionalBlocks: T.number.isRequired,
   }
@@ -21,15 +21,15 @@ class Grass extends PureComponent {
     const { setDragMode } = this.props;
     const coordinates = { x: e.pageX, y: e.pageY };
     const direction = coordinates.x > this.getCenterOfGrass() ? 1 : -1;
-    // 1 - to rigth, -1 - to left
+    // 1 - to right, -1 - to left
     setDragMode(coordinates, direction, columnIndex);
   }
 
   renderGrassBlock = (nothing, index) => {
-    const { block } = this.props;
+    const { blockSize } = this.props;
     const grassStyle = {
-      width: block,
-      height: block
+      width: blockSize,
+      height: blockSize
     }
     return (
       <GrassBlock key={ index } index={ index } grassStyle={ grassStyle } onMouseDown={ this.onMouseDown } />

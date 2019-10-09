@@ -6,7 +6,7 @@ import './styles.css';
 class Wall extends PureComponent {
   static propTypes = {
     wall: T.arrayOf(T.number).isRequired,
-    block: T.number.isRequired,
+    blockSize: T.number.isRequired,
     nextLevel: T.arrayOf(T.number).isRequired,
     water: T.arrayOf(T.number).isRequired,
     additionalWallLength: T.number.isRequired,
@@ -22,13 +22,13 @@ class Wall extends PureComponent {
   }
 
   renderWallColumn = (blockCount, columnIndex) => {
-    const { block, columnIndex: raisedColumnindex, additionalWallBlocks } = this.props;
+    const { blockSize, columnIndex: raisedColumnIndex, additionalWallBlocks } = this.props;
     const blockStyle = {
-      width: block,
-      height: block
+      width: blockSize,
+      height: blockSize
     }
 
-    const newBlockCount = columnIndex === raisedColumnindex
+    const newBlockCount = columnIndex === raisedColumnIndex
       ? blockCount + additionalWallBlocks
       : blockCount;
 
@@ -64,7 +64,6 @@ class Wall extends PureComponent {
 
   render() {
     const { wall, additionalWallLength } = this.props;
-    if (isNaN(wall[wall.length-1])) { debugger; }
     let newWall = [...wall];
     if (additionalWallLength > 0) {
       newWall = wall.concat(Array(additionalWallLength).fill(0));

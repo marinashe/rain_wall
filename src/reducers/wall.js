@@ -1,16 +1,13 @@
 import createReducer from '../config/createReducer';
 import Constants from '../config/constants';
 
+
 const getDefaultState = () => ({
   wall: [1, 0, 2],
   water: [],
   nextLevel: [],
-  grass: 3,
-  block: 30,
-  dragMode: false,
-  direction: 1, // 1 - to rigth, -1 - to left
-  startCoordinates: null,
-  columnIndex: -1
+  grass: Constants.MIN_WALL_LENGTH,
+  blockSize: Constants.BLOCK_SIZE
 });
 
 const wall = createReducer(getDefaultState(), {
@@ -43,23 +40,6 @@ const wall = createReducer(getDefaultState(), {
       wall
     };
     return newState;
-  },
-  [Constants.Drag.SET_DRAG_MODE](state, { coordinates, direction, columnIndex }) {
-    return {
-      ...state,
-      dragMode: true,
-      direction,
-      columnIndex,
-      startCoordinates: coordinates
-    };
-  },
-  [Constants.Drag.UNSET_DRAG_MODE](state) {
-    return {
-      ...state,
-      dragMode: false,
-      startCoordinates: null,
-      columnIndex: -1
-    };
   },
   [Constants.Wall.ADD_WALL_BLOCKS](state, { count, columnIndex }) {
     const wall = [...state.wall];

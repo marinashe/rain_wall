@@ -1,12 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-container {
+.app-container {
   background-color: white;
   min-height: 100vh;
   min-width: 100vw;
@@ -16,4 +8,12 @@
   justify-content: flex-end;
   font-size: calc(10px + 2vmin);
   color: #282c34;
+}
+
+.main {
+  border: 1px solid black;
+  margin: 20px 20px 50px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
 }
