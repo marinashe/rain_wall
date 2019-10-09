@@ -10,10 +10,6 @@ import NoAnimation from './no_animation';
 import './styles.css';
 
 const difference = (a, b) => Math.abs(a - b);
-const SIZE = {
-  width: 700,
-  height: 600
-};
 
 class App extends PureComponent {
   static propTypes = {
@@ -145,7 +141,6 @@ class App extends PureComponent {
     }
 
     const mainStyle = {
-      ...SIZE,
       backgroundColor: rainMode ? 'lightblue' : 'white',
       cursor
     }

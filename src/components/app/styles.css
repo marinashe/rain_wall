@@ -10,6 +10,8 @@
 
 .app-main {
   /* border: 1px solid black; */
+  max-width: 700px;
+  height: 600px;
   margin: 20px 20px 70px;
   display: flex;
   flex-direction: column;
