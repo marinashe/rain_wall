@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/rain_wall/static/css/main.166ed8c4.chunk.css",
+    "main.js": "/rain_wall/static/js/main.85c2313b.chunk.js",
+    "main.js.map": "/rain_wall/static/js/main.85c2313b.chunk.js.map",
+    "runtime-main.js": "/rain_wall/static/js/runtime-main.9615a87e.js",
+    "runtime-main.js.map": "/rain_wall/static/js/runtime-main.9615a87e.js.map",
+    "static/js/2.2560bd29.chunk.js": "/rain_wall/static/js/2.2560bd29.chunk.js",
+    "static/js/2.2560bd29.chunk.js.map": "/rain_wall/static/js/2.2560bd29.chunk.js.map",
+    "index.html": "/rain_wall/index.html",
+    "precache-manifest.6b6cfef0de6f424c8c052de1c46d654d.js": "/rain_wall/precache-manifest.6b6cfef0de6f424c8c052de1c46d654d.js",
+    "service-worker.js": "/rain_wall/service-worker.js",
+    "static/css/main.166ed8c4.chunk.css.map": "/rain_wall/static/css/main.166ed8c4.chunk.css.map",
+    "static/media/clouds.png": "/rain_wall/static/media/clouds.4a119168.png",
+    "static/media/styles.css": "/rain_wall/static/media/grass.c6f0214c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9615a87e.js",
+    "static/js/2.2560bd29.chunk.js",
+    "static/css/main.166ed8c4.chunk.css",
+    "static/js/main.85c2313b.chunk.js"
+  ]
+}
