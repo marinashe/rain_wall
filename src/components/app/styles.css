@@ -11,8 +11,8 @@
 .app-main {
   /* border: 1px solid black; */
   max-width: 700px;
-  height: 600px;
-  margin: 20px 20px 70px;
+  height: 520px;
+  margin: 20px 20px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

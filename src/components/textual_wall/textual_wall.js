@@ -29,11 +29,16 @@ class TextualWall extends PureComponent {
     const { calculateVolumeWater, wall, rainMode } = this.props;
     if (prevProps.wall !== wall) {
       this.setNewInputValue(wall.join(','));
+      this.setNoChanges();
     }
 
     if (!prevProps.rainMode && rainMode) {
       this.setVolumeWater(calculateVolumeWater(wall));
     }
+  }
+
+  setNoChanges =() => {
+    this.setState({ wasChanges: false });
   }
 
   setVolumeWater = (volumeWater) => {
@@ -87,7 +92,7 @@ class TextualWall extends PureComponent {
     }
 
     createWall(array);
-    this.setState({ wasChanges: false });
+    this.setNoChanges();
   }
 
   setNewInputValue = (inputValue) => {
@@ -116,7 +121,7 @@ class TextualWall extends PureComponent {
               className="textual-wall-input"
               value={ inputValue }
               onChange={ this.handleChange }
-              readOnly={ rainMode }
+              readOnly={ rainMode || noAnimationMode }
             />
           </label>
           <input type="submit" value="Build Wall" className={ buttonClassName } disabled={ isButtonDisabled } />
