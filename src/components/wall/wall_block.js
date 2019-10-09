@@ -4,7 +4,6 @@ import './styles.css';
 
 export const WallBlock = ({ blockStyle, columnIndex, onMouseDown }) => {
   const handleMouseDown = (e) => {
-    e.preventDefault();
     onMouseDown(e, columnIndex);
   }
   return (

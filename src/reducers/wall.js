@@ -1,11 +1,12 @@
 import createReducer from '../config/createReducer';
 import Constants from '../config/constants';
 
+const fillArray = (count) => Array(count).fill(0);
 
 const getDefaultState = () => ({
   wall: [1, 0, 2],
-  water: [],
-  nextLevel: [],
+  water: [0, 0, 0],
+  nextLevel: [0, 0, 0],
   grass: Constants.MIN_WALL_LENGTH,
   blockSize: Constants.BLOCK_SIZE
 });
@@ -13,10 +14,13 @@ const getDefaultState = () => ({
 const wall = createReducer(getDefaultState(), {
   [Constants.Wall.CREATE_WALL](state, { wall }) {
     if (wall) {
+      const blockCount = wall.length;
       return {
         ...getDefaultState(),
         wall,
-        grass: wall.length
+        grass: blockCount,
+        water: fillArray(blockCount),
+        nextLevel: fillArray(blockCount)
       };
     }
     return {
@@ -27,26 +31,36 @@ const wall = createReducer(getDefaultState(), {
     const grass = state.grass + count;
     let wall = [...state.wall];
     if (count > 0) {
-      wall = state.wall.concat(Array(count).fill(0));
+      wall = state.wall.concat(fillArray(count));
     }
 
     if (count < 0) {
       const newLength = state.wall.length + count;
       wall = state.wall.slice(0, newLength);
     }
-    const newState = {
+    const blockCount = wall.length;
+    const water = fillArray(blockCount);
+    const nextLevel = fillArray(blockCount);
+
+    return  {
       ...state,
       grass,
-      wall
+      wall,
+      water,
+      nextLevel
     };
-    return newState;
   },
   [Constants.Wall.ADD_WALL_BLOCKS](state, { count, columnIndex }) {
     const wall = [...state.wall];
     wall[columnIndex] = state.wall[columnIndex] + count;
+    const blockCount = wall.length;
+    const water = fillArray(blockCount);
+    const nextLevel = fillArray(blockCount);
     return {
       ...state,
-      wall
+      wall,
+      water,
+      nextLevel
     };
   }
 });

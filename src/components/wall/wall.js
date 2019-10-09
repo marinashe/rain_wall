@@ -12,11 +12,16 @@ class Wall extends PureComponent {
     additionalWallLength: T.number.isRequired,
     additionalWallBlocks: T.number.isRequired,
     columnIndex: T.number.isRequired,
-    setDragMode: T.func.isRequired
+    setDragMode: T.func.isRequired,
+    rainMode: T.bool.isRequired
   }
 
   onMouseDown = (e, columnIndex) => {
-    const { setDragMode } = this.props;
+    const { setDragMode, rainMode } = this.props;
+    if (rainMode) {
+      return;
+    }
+    e.preventDefault();
     const coordinates = { x: e.pageX, y: e.pageY };
     setDragMode(coordinates, 1, columnIndex);
   }

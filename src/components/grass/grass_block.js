@@ -4,7 +4,6 @@ import './styles.css';
 
 export const GrassBlock = ({ grassStyle, index, onMouseDown }) => {
   const handleMouseDown = (e) => {
-    e.preventDefault();
     onMouseDown(e, index);
   }
 

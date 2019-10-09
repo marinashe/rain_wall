@@ -3,7 +3,8 @@ import T from 'prop-types';
 import Constants from '../../config/constants';
 import ConnectedGrass from '../grass';
 import ConnectedWall from '../wall';
-import './app.css';
+import ConnectedCloud from '../cloud';
+import './styles.css';
 
 const difference = (a, b) => Math.abs(a - b);
 const SIZE = {
@@ -25,7 +26,8 @@ class App extends PureComponent {
     direction: T.number,
     columnIndex: T.number,
     wall: T.arrayOf(T.number).isRequired,
-    addWallBlocks: T.func.isRequired
+    addWallBlocks: T.func.isRequired,
+    rainMode: T.bool.isRequired
   }
 
   state = {
@@ -117,10 +119,17 @@ class App extends PureComponent {
   }
 
   render() {
+    const { rainMode } = this.props;
     const {
       additionalGrassBlocks,
       additionalWallBlocks
     } = this.state;
+
+    const mainStyle = {
+      ...SIZE,
+      backgroundColor: rainMode ? 'lightblue' : 'white'
+    }
+
     return (
       <div
         className="app-container"
@@ -129,16 +138,20 @@ class App extends PureComponent {
         onMouseLeave={ this.onMouseLeave }
       >
         <div
-          className="main"
-          style={ SIZE }
+          className="app-main"
+          style={ mainStyle }
         >
-          <ConnectedGrass
-            additionalBlocks={ additionalGrassBlocks }
-          />
-          <ConnectedWall
-            additionalWallLength={ additionalGrassBlocks }
-            additionalWallBlocks={ additionalWallBlocks }
-          />
+          <ConnectedCloud />
+          <div className="app-wall">
+            <ConnectedWall
+              additionalWallLength={ additionalGrassBlocks }
+              additionalWallBlocks={ additionalWallBlocks }
+            />
+            <ConnectedGrass
+              additionalBlocks={ additionalGrassBlocks }
+            />
+          </div>
+
         </div>
       </div>
     );

@@ -13,6 +13,10 @@ const Constants = {
   Drag: {
     SET_DRAG_MODE: 'set:drag:mode',
     UNSET_DRAG_MODE: 'unset:drag:mode'
+  },
+  Rain: {
+    START_RAIN: 'start:rain',
+    STOP_RAIN: 'stop:rain'
   }
 };
 
