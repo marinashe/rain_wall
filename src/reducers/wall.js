@@ -5,11 +5,11 @@ import { calculateVolumeWater } from '../config/utils';
 const fillArray = (count) => Array(count).fill(0);
 
 const getDefaultState = () => ({
-  calculatedWall: [1, 8, 1, 5, 2, 0, 6],
-  wall: [1, 8, 1, 5, 2, 0, 6],
-  water: [0, 0, 0, 0, 0, 0, 0],
-  nextLevel: [0, 0, 0, 0, 0, 0, 0],
-  grass: 7,
+  calculatedWall: [4, 10, 0, 0, 1, 6, 0, 7, 4, 3, 9, 0, 4, 7, 0],
+  wall: [4, 10 ,0, 0, 1, 6, 0, 7, 4, 3, 9, 0, 4, 7, 0],
+  water: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  nextLevel: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  grass: 15,
   blockSize: Constants.BLOCK_SIZE,
   volumeWater: 0
 });

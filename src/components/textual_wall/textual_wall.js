@@ -4,6 +4,8 @@ import T from 'prop-types';
 import Constants from '../../config/constants';
 import './styles.css';
 
+const INSTRUCTIONS = `Drag the grass and bricks to build the wall.Click the cloud to start/stop the rain.`;
+
 class TextualWall extends PureComponent {
   static propTypes = {
     wall: T.arrayOf(T.number).isRequired,
@@ -109,6 +111,7 @@ class TextualWall extends PureComponent {
       <div
         className="textual-wall-container"
       >
+        <div className="textual-wall-instruction">{ INSTRUCTIONS }</div>
         <div className="textual-wall-label">
           Water volume: { volumeWater  }
         </div>

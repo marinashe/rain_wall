@@ -2,6 +2,8 @@ import React from 'react';
 import T from 'prop-types';
 import './styles.css';
 
+const TEXT = 'The requested wall is too complex to draw. But you can still calculate it.';
+
 export const NoAnimation = ({ noAnimationMode, unsetNoAnimationMode, calculateVolumeWater }) => {
   if (!noAnimationMode) {
     return null;
@@ -9,7 +11,7 @@ export const NoAnimation = ({ noAnimationMode, unsetNoAnimationMode, calculateVo
   return (
     <div className="app-no-animation">
       <div className="app-no-animation-text">
-        The requested wall is too complex to draw. But you can still calculate it.
+        { TEXT }
       </div>
       <div>
         <button onClick={ unsetNoAnimationMode } className="app-button-reset">RESET</button>
