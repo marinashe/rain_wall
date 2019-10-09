@@ -4,7 +4,7 @@ This project solves the problem of calculation how much rain will be trapped in 
 
 You can visit a working demo here: https://marinashe.github.io/rain_wall/
 
-The basic algorithm can be found here: https://github.com/marinashe/rain_wall/blob/master/src/config/utils.js
+The basic algorithm can be found here: https://github.com/marinashe/rain_wall/blob/master/src/calculate_volume_water.js
 
 # Instructions
 

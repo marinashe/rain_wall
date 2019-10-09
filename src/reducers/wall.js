@@ -1,6 +1,6 @@
 import createReducer from '../config/createReducer';
 import Constants from '../config/constants';
-import { calculateVolumeWater } from '../config/utils';
+import { calculateVolumeWater } from '../calculate_volume_water';
 
 const fillArray = (count) => Array(count).fill(0);
 
