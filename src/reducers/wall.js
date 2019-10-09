@@ -53,17 +53,22 @@ const wall = createReducer(getDefaultState(), {
   [Constants.Wall.ADD_WALL_BLOCKS](state, { count, columnIndex }) {
     const wall = [...state.wall];
     wall[columnIndex] = state.wall[columnIndex] + count;
-    const blockCount = wall.length;
-    const water = fillArray(blockCount);
-    const nextLevel = fillArray(blockCount);
     return {
       ...state,
-      wall,
+      wall
+    };
+  },
+  [Constants.Rain.ADD_NEXT_LEVEL](state, { water, nextLevel }) {
+    return {
+      ...state,
       water,
       nextLevel
     };
   },
-  [Constants.Rain.ADD_NEXT_LEVEL](state, { water, nextLevel }) {
+  [Constants.Rain.STOP_RAIN](state) {
+    const blockCount = state.wall.length;
+    const water = fillArray(blockCount);
+    const nextLevel = fillArray(blockCount);
     return {
       ...state,
       water,

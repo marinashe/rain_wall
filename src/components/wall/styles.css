@@ -10,11 +10,65 @@
 }
 
 .wall-block {
-  background-color: brown;
-  border-top: 1px solid black;
+  /* background-color: brown; */
+  /* border-top: 1px solid black; */
+  background: url("../../assets/brick.png");
+  background-repeat: round;
 }
 
-.water-block {
+/* .water-block {
   background-color: blue;
   border-bottom: 1px solid blue;
+} */
+
+.water-block {
+  /* border-bottom: 1px solid #04ACFF; */
+  border-radius: 0%;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  /* transform: translate3d(0, 0, 0); */
 }
+
+.water-column {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.water-block .fill {
+  animation-name: fillAction;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-duration: 1.9s;
+  animation-fill-mode: forwards;
+}
+
+.water-block #waveShape {
+  animation-name: waveAction;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+  width:300px;
+  height: 150px;
+  fill: #04ACFF;
+}
+
+@keyframes fillAction {
+  0% {
+      transform: translate(0, 30px);
+  }
+  100% {
+      transform: translate(0, -10px);
+  }
+}
+
+@keyframes waveAction {
+  0% {
+      transform: translate(-150px, 0);
+  }
+  100% {
+      transform: translate(0, 0);
+  }
+}
+

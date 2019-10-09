@@ -1,5 +1,9 @@
-.cloud {
-  background-color: blue;
-  height: 60px;
+.clouds-container {
+  height: 70px;
+  width: 100%;
+}
+
+.clouds {
+  height: 100%;
   width: 100%;
 }

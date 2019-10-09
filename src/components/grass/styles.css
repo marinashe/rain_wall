@@ -1,8 +1,13 @@
 .grass-container {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .grass-block {
-  background-color: green;
+  background: url("../../assets/grass.png");
+  background-repeat: round;
 }

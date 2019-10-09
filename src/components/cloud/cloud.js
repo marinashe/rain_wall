@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import T from 'prop-types';
-
+import cloud  from '../../assets/clouds.png';
 import './styles.css';
 
-const INTERVAL = 1000;
+const INTERVAL = 2000;
 
 class Cloud extends PureComponent {
   static propTypes = {
@@ -71,6 +71,7 @@ class Cloud extends PureComponent {
       this.animation = null;
     } else {
       startRain();
+      this.addLevel();
       this.animation = setInterval(this.addLevel, INTERVAL)
     }
   }
@@ -78,9 +79,11 @@ class Cloud extends PureComponent {
   render() {
     return (
       <div
-        className="cloud"
+        className="clouds-container"
         onClick={ this.toggleRain }
-      />
+      >
+        <img  src={ cloud } className="clouds" alt="clouds"/>
+      </div>
     );
   }
 }

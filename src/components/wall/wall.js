@@ -59,16 +59,19 @@ class Wall extends PureComponent {
     }
     return (
       <div className="wall-column" key={ `column${ columnIndex }` }>
-         {
-          Array.from(Array(waterBlocks)).map((nothing, waterBlockIndex) => {
-            return (
-              <WaterBlock
-                key={ `waterBlock${ columnIndex }-${ waterBlockIndex }` }
-                blockStyle={ blockStyle }
-              />
-            )
-          })
-        }
+        <div className="water-column">
+          {
+            Array.from(Array(waterBlocks)).map((nothing, waterBlockIndex) => {
+              return (
+                <WaterBlock
+                  key={ `waterBlock${ columnIndex }-${ waterBlockIndex }` }
+                  blockStyle={ blockStyle }
+                />
+              )
+            })
+          }
+        </div>
+
         {
           Array.from(Array(newBlockCount)).map((nothing, blockIndex) => {
             return (
