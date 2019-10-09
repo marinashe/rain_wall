@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Cloud from './cloud';
-import { startRain, stopRain } from '../../actions/rain';
+import { startRain, stopRain, addNextLevel } from '../../actions/rain';
 
 const mapStateToProps = ({ wall, rain }) => ({
   water: wall.water,
@@ -10,5 +10,5 @@ const mapStateToProps = ({ wall, rain }) => ({
 });
 
 export default connect(mapStateToProps,
-  { startRain, stopRain }
+  { startRain, stopRain, addNextLevel }
 )(Cloud);

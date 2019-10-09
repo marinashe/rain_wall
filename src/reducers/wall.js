@@ -62,6 +62,13 @@ const wall = createReducer(getDefaultState(), {
       water,
       nextLevel
     };
+  },
+  [Constants.Rain.ADD_NEXT_LEVEL](state, { water, nextLevel }) {
+    return {
+      ...state,
+      water,
+      nextLevel
+    };
   }
 });
 

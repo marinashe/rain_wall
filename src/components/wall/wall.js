@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import T from 'prop-types';
 import WallBlock from './wall_block';
+import WaterBlock from './water_block';
 import './styles.css';
 
 class Wall extends PureComponent {
@@ -27,17 +28,24 @@ class Wall extends PureComponent {
   }
 
   renderWallColumn = (blockCount, columnIndex) => {
-    const { blockSize, columnIndex: raisedColumnIndex, additionalWallBlocks } = this.props;
+    const {
+      blockSize,
+      columnIndex: raisedColumnIndex,
+      additionalWallBlocks,
+      water,
+      nextLevel,
+    } = this.props;
     const blockStyle = {
       width: blockSize,
       height: blockSize
     }
 
+    const waterBlocks = (water[columnIndex] || 0)  + (nextLevel[columnIndex] || 0);
     const newBlockCount = columnIndex === raisedColumnIndex
-      ? blockCount + additionalWallBlocks
-      : blockCount;
+    ? blockCount + additionalWallBlocks
+    : blockCount;
 
-    if (newBlockCount === 0) {
+    if ((newBlockCount + waterBlocks) === 0) {
       blockStyle.height = 0;
       blockStyle.borderTop = 0;
       return (
@@ -51,6 +59,16 @@ class Wall extends PureComponent {
     }
     return (
       <div className="wall-column" key={ `column${ columnIndex }` }>
+         {
+          Array.from(Array(waterBlocks)).map((nothing, waterBlockIndex) => {
+            return (
+              <WaterBlock
+                key={ `waterBlock${ columnIndex }-${ waterBlockIndex }` }
+                blockStyle={ blockStyle }
+              />
+            )
+          })
+        }
         {
           Array.from(Array(newBlockCount)).map((nothing, blockIndex) => {
             return (
@@ -78,7 +96,6 @@ class Wall extends PureComponent {
       const newLength = wall.length - Math.abs(additionalWallLength);
       newWall = wall.slice(0, Math.abs(newLength));
     }
-
     return (
       <div ref={ this.grassRef } className="wall-container">
         {

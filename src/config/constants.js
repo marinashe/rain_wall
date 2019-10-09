@@ -16,7 +16,8 @@ const Constants = {
   },
   Rain: {
     START_RAIN: 'start:rain',
-    STOP_RAIN: 'stop:rain'
+    STOP_RAIN: 'stop:rain',
+    ADD_NEXT_LEVEL: 'add:next:level'
   }
 };
 
