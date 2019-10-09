@@ -1,6 +1,6 @@
 # Description
 
-This project solves the problem of calculation how much rain will be trapped in a wall with different heights.
+This project solves the problem of calculating how much rain will be trapped in a wall with different heights.
 
 You can visit a working demo here: https://marinashe.github.io/rain_wall/
 
