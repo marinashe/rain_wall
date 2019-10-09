@@ -5,3 +5,8 @@ export const addWallBlocks = (count, columnIndex) => ({
   count,
   columnIndex
 });
+
+export const createWall = (wall) => ({
+  type: Constants.Wall.CREATE_WALL,
+  wall
+});

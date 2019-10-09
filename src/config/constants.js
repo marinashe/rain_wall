@@ -1,6 +1,6 @@
 const Constants = {
   BLOCK_SIZE: 30,
-  MAX_WALL_LENGTH: 25,
+  MAX_WALL_LENGTH: 23,
   MIN_WALL_LENGTH: 3,
   MAX_WALL_HEIGHT: 14,
   Wall: {

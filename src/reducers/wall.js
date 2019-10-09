@@ -4,10 +4,10 @@ import Constants from '../config/constants';
 const fillArray = (count) => Array(count).fill(0);
 
 const getDefaultState = () => ({
-  wall: [1, 0, 2],
-  water: [0, 0, 0],
-  nextLevel: [0, 0, 0],
-  grass: Constants.MIN_WALL_LENGTH,
+  wall: [1, 8, 1, 5, 2, 0, 6],
+  water: [0, 0, 0, 0, 0, 0, 0],
+  nextLevel: [0, 0, 0, 0, 0, 0, 0],
+  grass: 7,
   blockSize: Constants.BLOCK_SIZE
 });
 

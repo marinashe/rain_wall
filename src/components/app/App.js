@@ -4,12 +4,13 @@ import Constants from '../../config/constants';
 import ConnectedGrass from '../grass';
 import ConnectedWall from '../wall';
 import ConnectedCloud from '../cloud';
+import TextualWall from '../textual_wall';
 import './styles.css';
 
 const difference = (a, b) => Math.abs(a - b);
 const SIZE = {
   width: 700,
-  height: 700
+  height: 600
 };
 
 class App extends PureComponent {
@@ -153,6 +154,7 @@ class App extends PureComponent {
           </div>
 
         </div>
+        <TextualWall />
       </div>
     );
   }
