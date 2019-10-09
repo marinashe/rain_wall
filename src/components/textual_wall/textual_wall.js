@@ -12,7 +12,7 @@ class TextualWall extends PureComponent {
     noAnimationMode: T.bool.isRequired,
     setNoAnimationMode: T.func.isRequired,
     calculateVolumeWater: T.func.isRequired,
-    volumeWater: T.number.isRequired
+    volumeWater: T.number.isRequired,
   }
 
   constructor(props) {
@@ -20,11 +20,12 @@ class TextualWall extends PureComponent {
 
     this.state = {
       inputValue: props.wall.join(','),
-      error: null
+      error: null,
+      wasChanges: false
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { calculateVolumeWater, wall, rainMode } = this.props;
     if (prevProps.wall !== wall) {
       this.setNewInputValue(wall.join(','));
@@ -41,12 +42,11 @@ class TextualWall extends PureComponent {
 
   handleChange = (e) => {
     this.setNewInputValue(e.target.value);
+    this.setState({ wasChanges: true });
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+  parseInput = () => {
     const { inputValue } = this.state;
-    const { createWall ,setNoAnimationMode }  = this.props;
     let error = null;
     const array = inputValue.split(",").map(
       (value) => {
@@ -62,6 +62,13 @@ class TextualWall extends PureComponent {
         return null;
       }
     );
+    return { array, error };
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { createWall ,setNoAnimationMode }  = this.props;
+    const { array, error } = this.parseInput();
     if (error) {
       this.setState({ error });
       return;
@@ -69,17 +76,18 @@ class TextualWall extends PureComponent {
 
     if (array.length > Constants.MAX_WALL_LENGTH) {
       // this.setState({ error: `Wall is too long. Max wall length = ${ Constants.MAX_WALL_LENGTH }` });
-      setNoAnimationMode()
+      setNoAnimationMode(array)
       return;
     }
 
     if (Math.max(...array) > Constants.MAX_WALL_HEIGHT) {
       // this.setState({ error: `Wall is too high. Max wall height = ${ Constants.MAX_WALL_HEIGHT }` });
-      setNoAnimationMode()
+      setNoAnimationMode(array)
       return;
     }
 
     createWall(array);
+    this.setState({ wasChanges: false });
   }
 
   setNewInputValue = (inputValue) => {
@@ -88,31 +96,32 @@ class TextualWall extends PureComponent {
 
 
   render() {
-    const { inputValue, error } = this.state;
+    const { inputValue, error, wasChanges } = this.state;
     const { rainMode, noAnimationMode, volumeWater } = this.props;
-    const isButtonDisabled = noAnimationMode || rainMode;
-    const buttonClassName = isButtonDisabled ? 'disabled-button' : 'button';
+    const isButtonDisabled = noAnimationMode || rainMode || !wasChanges;
+    const buttonClassName = isButtonDisabled ? 'textual-wall-disabled-button' : 'textual-wall-button';
     return (
       <div
         className="textual-wall-container"
       >
-        <div className="label">
-          Volume water: { volumeWater  }
+        <div className="textual-wall-label">
+          Water volume: { volumeWater  }
         </div>
-        <form className="form" onSubmit={ this.handleSubmit }>
-          <label className="label">
+        <form className="textual-wall-form" onSubmit={ this.handleSubmit }>
+          <label className="textual-wall-label">
             Textual Wall:
             <input
               type="text"
               name="Textual Wall"
-              className="input"
+              className="textual-wall-input"
               value={ inputValue }
               onChange={ this.handleChange }
+              readOnly={ rainMode }
             />
           </label>
           <input type="submit" value="Build Wall" className={ buttonClassName } disabled={ isButtonDisabled } />
         </form>
-        <div className="error">
+        <div className="textual-wall-error">
           { error || '' }
         </div>
       </div>

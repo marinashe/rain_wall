@@ -3,7 +3,7 @@ import T from 'prop-types';
 import cloud  from '../../assets/clouds.png';
 import './styles.css';
 
-const INTERVAL = 2000;
+const INTERVAL = 1000;
 
 class Cloud extends PureComponent {
   static propTypes = {

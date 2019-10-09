@@ -33,7 +33,12 @@
   font-weight: 600;
 }
 
-.button-reset {
+.app-no-animation-text {
+  margin: 30px;
+  text-align: center;
+}
+
+.app-button-reset {
   border: 1px solid red;
   border-radius: 5px;
   width: 130px;
@@ -44,7 +49,7 @@
   margin: 10px;
 }
 
-.button {
+.app-button {
   border: 1px solid green;
   border-radius: 5px;
   width: 130px;

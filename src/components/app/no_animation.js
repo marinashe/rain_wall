@@ -8,12 +8,12 @@ export const NoAnimation = ({ noAnimationMode, unsetNoAnimationMode, calculateVo
   }
   return (
     <div className="app-no-animation">
-      <div>
-        hdsjafg hfejfhjdsh hdjfhdsjk hsjadfhjsd sgjadfgjhsd sghafgjhdsg fdghsfgjds
+      <div className="app-no-animation-text">
+        The requested wall is too complex to draw. But you can still calculate it.
       </div>
       <div>
-        <button onClick={ unsetNoAnimationMode } className="button-reset">RESET</button>
-        <button onClick={ calculateVolumeWater } className="button">CALCULATE</button>
+        <button onClick={ unsetNoAnimationMode } className="app-button-reset">RESET</button>
+        <button onClick={ calculateVolumeWater } className="app-button">CALCULATE</button>
       </div>
     </div>
   );

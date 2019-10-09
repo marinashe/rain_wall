@@ -5,6 +5,7 @@ import { calculateVolumeWater } from '../config/utils';
 const fillArray = (count) => Array(count).fill(0);
 
 const getDefaultState = () => ({
+  calculatedWall: [1, 8, 1, 5, 2, 0, 6],
   wall: [1, 8, 1, 5, 2, 0, 6],
   water: [0, 0, 0, 0, 0, 0, 0],
   nextLevel: [0, 0, 0, 0, 0, 0, 0],
@@ -20,6 +21,7 @@ const wall = createReducer(getDefaultState(), {
       return {
         ...getDefaultState(),
         wall,
+        calculatedWall: wall,
         grass: blockCount,
         water: fillArray(blockCount),
         nextLevel: fillArray(blockCount)
@@ -28,6 +30,12 @@ const wall = createReducer(getDefaultState(), {
     return {
       ...getDefaultState()
     };
+  },
+  [Constants.Animation.SET_NO_ANIMATION_MODE](state, { wall }) {
+    return {
+      ...state,
+      calculatedWall: wall,
+      };
   },
   [Constants.Grass.ADD_GRASS_BLOCK](state, { count }) {
     const grass = state.grass + count;
@@ -48,6 +56,7 @@ const wall = createReducer(getDefaultState(), {
       ...state,
       grass,
       wall,
+      calculatedWall: wall,
       water,
       nextLevel,
       volumeWater: 0
@@ -58,7 +67,8 @@ const wall = createReducer(getDefaultState(), {
     wall[columnIndex] = state.wall[columnIndex] + count;
     return {
       ...state,
-      wall
+      wall,
+      calculatedWall: wall
     };
   },
   [Constants.Rain.ADD_NEXT_LEVEL](state, { water, nextLevel }) {
@@ -80,16 +90,15 @@ const wall = createReducer(getDefaultState(), {
     };
   },
   [Constants.Wall.CALCULATE_VOLUME_WATER] (state) {
-    const volumeWater = calculateVolumeWater(state.wall);
+    const volumeWater = calculateVolumeWater(state.calculatedWall);
     return {
       ...state,
       volumeWater
     };
   },
-  [Constants.Animation.UNSET_NO_ANIMATION_MODE](state) {
+  [Constants.Animation.UNSET_NO_ANIMATION_MODE]() {
     return {
-      ...state,
-      volumeWater: 0
+      ...getDefaultState()
     };
   }
 });

@@ -1,11 +1,11 @@
 .textual-wall-container {
-  width: 90%;
+  width: 700px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.label {
+.textual-wall-label {
   font-size: 18px;
   font-weight: 600;
   color: #282c34;
@@ -13,7 +13,7 @@
   flex-direction: column;
 }
 
-.input {
+.textual-wall-input {
   font-size: 16px;
   color: #282c34;
   width: 350px;
@@ -24,7 +24,7 @@
   padding: 0 10px;
 }
 
-.form {
+.textual-wall-form {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -33,7 +33,7 @@
   margin: 20px 0 5px;
 }
 
-.button {
+.textual-wall-button {
   border: 1px solid green;
   border-radius: 5px;
   width: 100px;
@@ -44,7 +44,7 @@
   margin: 10px;
 }
 
-.disabled-button {
+.textual-wall-disabled-button {
   border: 1px solid gray;
   border-radius: 5px;
   width: 100px;
@@ -55,7 +55,7 @@
   margin: 10px;
 }
 
-.error {
+.textual-wall-error {
   font-size: 16px;
   color:red;
 }

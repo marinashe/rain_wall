@@ -14,8 +14,9 @@ export const addNextLevel = (water, nextLevel) => ({
   nextLevel
 });
 
-export const setNoAnimationMode = () => ({
-  type: Constants.Animation.SET_NO_ANIMATION_MODE
+export const setNoAnimationMode = (wall) => ({
+  type: Constants.Animation.SET_NO_ANIMATION_MODE,
+  wall
 });
 
 export const unsetNoAnimationMode = () => ({

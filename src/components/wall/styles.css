@@ -10,26 +10,17 @@
 }
 
 .wall-block {
-  /* background-color: brown; */
-  /* border: 1px solid black; */
   background: url("../../assets/brick.png");
   background-repeat: round;
   cursor: ns-resize;
 }
 
-/* .water-block {
-  background-color: blue;
-  border-bottom: 1px solid blue;
-} */
-
 .water-block {
-  /* border: 1px solid #04ACFF; */
   border-radius: 0%;
   width: 30px;
   height: 30px;
   overflow: hidden;
   backface-visibility: hidden;
-  /* transform: translate3d(0, 0, 0); */
 }
 
 .water-column {
@@ -41,18 +32,20 @@
   animation-name: fillAction;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  animation-duration: 1.9s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
-.water-block #waveShape {
+.water-block:last-child #waveShape {
   animation-name: waveAction;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  animation-duration: 0.5s;
-  width:300px;
-  height: 150px;
+  animation-duration: 0.3s;
   fill: #04ACFF;
+}
+
+.water-block:not(:last-child) #waveShape {
+  transform: translate(0, -10px);
 }
 
 @keyframes fillAction {
@@ -60,13 +53,13 @@
       transform: translate(0, 30px);
   }
   100% {
-      transform: translate(0, -10px);
+      transform: translate(0, 0px);
   }
 }
 
 @keyframes waveAction {
   0% {
-      transform: translate(-150px, 0);
+      transform: translate(-30px, 0);
   }
   100% {
       transform: translate(0, 0);
