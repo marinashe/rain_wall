@@ -44,8 +44,13 @@ class Grass extends PureComponent {
   render() {
     const { grass, additionalBlocks } = this.props;
     const countBlocks = grass + additionalBlocks;
+    const styleGrass = additionalBlocks > 0
+      ? {
+        cursor: 'ew-resize'
+      }
+      : {};
     return (
-      <div ref={ this.grassRef } className="grass-container">
+      <div ref={ this.grassRef } className="grass-container" style={ styleGrass }>
         {
           Array.from(Array(countBlocks)).map(this.renderGrassBlock)
         }

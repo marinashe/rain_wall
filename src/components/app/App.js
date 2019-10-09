@@ -136,9 +136,18 @@ class App extends PureComponent {
       additionalWallBlocks
     } = this.state;
 
+    let cursor = 'auto';
+    if (additionalWallBlocks > 0 ) {
+      cursor = 'ns-resize';
+    }
+    if (additionalGrassBlocks > 0 ) {
+      cursor = 'ew-resize';
+    }
+
     const mainStyle = {
       ...SIZE,
-      backgroundColor: rainMode ? 'lightblue' : 'white'
+      backgroundColor: rainMode ? 'lightblue' : 'white',
+      cursor
     }
 
     return (
@@ -153,7 +162,7 @@ class App extends PureComponent {
           style={ mainStyle }
         >
           <ConnectedCloud />
-          <div className="app-wall">
+          <div className="app-wall" >
             <ConnectedWall
               additionalWallLength={ additionalGrassBlocks }
               additionalWallBlocks={ additionalWallBlocks }
