@@ -13,3 +13,11 @@ export const addNextLevel = (water, nextLevel) => ({
   water,
   nextLevel
 });
+
+export const setNoAnimationMode = () => ({
+  type: Constants.Animation.SET_NO_ANIMATION_MODE
+});
+
+export const unsetNoAnimationMode = () => ({
+  type: Constants.Animation.UNSET_NO_ANIMATION_MODE
+});

@@ -5,7 +5,8 @@ const Constants = {
   MAX_WALL_HEIGHT: 14,
   Wall: {
     CREATE_WALL: 'create:new:wall',
-    ADD_WALL_BLOCKS: 'add:wall:blocks'
+    ADD_WALL_BLOCKS: 'add:wall:blocks',
+    CALCULATE_VOLUME_WATER: 'calculate:volume:water'
   },
   Grass: {
     ADD_GRASS_BLOCK: 'add:grass:block'
@@ -18,6 +19,10 @@ const Constants = {
     START_RAIN: 'start:rain',
     STOP_RAIN: 'stop:rain',
     ADD_NEXT_LEVEL: 'add:next:level'
+  },
+  Animation: {
+    SET_NO_ANIMATION_MODE: 'set:no:animation:mode',
+    UNSET_NO_ANIMATION_MODE: 'unset:no:animation:mode'
   }
 };
 

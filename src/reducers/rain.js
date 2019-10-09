@@ -3,7 +3,8 @@ import Constants from '../config/constants';
 
 
 const getDefaultState = () => ({
-  rainMode: false
+  rainMode: false,
+  noAnimationMode: false
 });
 
 const rain = createReducer(getDefaultState(), {
@@ -14,6 +15,17 @@ const rain = createReducer(getDefaultState(), {
     };
   },
   [Constants.Rain.STOP_RAIN]() {
+    return {
+      ...getDefaultState()
+    };
+  },
+  [Constants.Animation.SET_NO_ANIMATION_MODE](state) {
+    return {
+      ...state,
+      noAnimationMode: true
+    };
+  },
+  [Constants.Animation.UNSET_NO_ANIMATION_MODE]() {
     return {
       ...getDefaultState()
     };

@@ -10,3 +10,7 @@ export const createWall = (wall) => ({
   type: Constants.Wall.CREATE_WALL,
   wall
 });
+
+export const calculateVolumeWater = () => ({
+  type: Constants.Wall.CALCULATE_VOLUME_WATER
+});

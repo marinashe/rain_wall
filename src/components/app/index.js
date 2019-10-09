@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import App from './app';
 import { unsetDragMode } from '../../actions/drag';
 import { addGrassBlocks } from '../../actions/grass';
-import { addWallBlocks } from '../../actions/wall';
+import { addWallBlocks, calculateVolumeWater } from '../../actions/wall';
+import { unsetNoAnimationMode } from '../../actions/rain';
 
 const mapStateToProps = ({ wall, drag, rain }) => ({
   dragMode: drag.dragMode,
@@ -12,10 +13,11 @@ const mapStateToProps = ({ wall, drag, rain }) => ({
   direction: drag.direction,
   columnIndex: drag.columnIndex,
   wall: wall.wall,
-  rainMode: rain.rainMode
+  rainMode: rain.rainMode,
+  noAnimationMode: rain.noAnimationMode
 });
 
 
 export default connect(mapStateToProps,
-  { unsetDragMode, addGrassBlocks, addWallBlocks }
+  { unsetDragMode, addGrassBlocks, addWallBlocks, unsetNoAnimationMode, calculateVolumeWater }
 )(App);

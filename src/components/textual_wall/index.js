@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 import TextualWall from './textual_wall';
-import { createWall } from '../../actions/wall';
+import { createWall, calculateVolumeWater } from '../../actions/wall';
+import { setNoAnimationMode } from '../../actions/rain';
 
 const mapStateToProps = ({ wall, rain }) => ({
   wall: wall.wall,
-  rainMode: rain.rainMode
+  rainMode: rain.rainMode,
+  noAnimationMode: rain.noAnimationMode,
+  volumeWater: wall.volumeWater
 });
 
 export default connect(mapStateToProps,
-  { createWall }
+  { createWall, setNoAnimationMode, calculateVolumeWater }
 )(TextualWall);

@@ -11,7 +11,7 @@
 
 .wall-block {
   /* background-color: brown; */
-  /* border-top: 1px solid black; */
+  /* border: 1px solid black; */
   background: url("../../assets/brick.png");
   background-repeat: round;
 }
@@ -22,7 +22,7 @@
 } */
 
 .water-block {
-  /* border-bottom: 1px solid #04ACFF; */
+  /* border: 1px solid #04ACFF; */
   border-radius: 0%;
   width: 30px;
   height: 30px;

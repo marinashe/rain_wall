@@ -5,6 +5,8 @@ import ConnectedGrass from '../grass';
 import ConnectedWall from '../wall';
 import ConnectedCloud from '../cloud';
 import TextualWall from '../textual_wall';
+import NoAnimation from './no_animation';
+
 import './styles.css';
 
 const difference = (a, b) => Math.abs(a - b);
@@ -28,7 +30,10 @@ class App extends PureComponent {
     columnIndex: T.number,
     wall: T.arrayOf(T.number).isRequired,
     addWallBlocks: T.func.isRequired,
-    rainMode: T.bool.isRequired
+    rainMode: T.bool.isRequired,
+    noAnimationMode: T.bool.isRequired,
+    unsetNoAnimationMode: T.func.isRequired,
+    calculateVolumeWater: T.func.isRequired
   }
 
   state = {
@@ -120,7 +125,12 @@ class App extends PureComponent {
   }
 
   render() {
-    const { rainMode } = this.props;
+    const {
+      rainMode,
+      noAnimationMode,
+      unsetNoAnimationMode,
+      calculateVolumeWater
+    } = this.props;
     const {
       additionalGrassBlocks,
       additionalWallBlocks
@@ -152,7 +162,11 @@ class App extends PureComponent {
               additionalBlocks={ additionalGrassBlocks }
             />
           </div>
-
+          <NoAnimation
+            noAnimationMode={ noAnimationMode }
+            unsetNoAnimationMode={ unsetNoAnimationMode }
+            calculateVolumeWater={ calculateVolumeWater }
+          />
         </div>
         <TextualWall />
       </div>
